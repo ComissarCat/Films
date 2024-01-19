@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-body">
+                <a asp-controller="Home" asp-action="Index"><img src="~/images/back.svg" alt="Домой" /></a>
+                <ul class="header-list">
+                    <li class="header-link"><a asp-controller="Home" asp-action="Index">Главная</a></li>
+                    <li class="header-link"><a asp-controller="Home" asp-action="Films">Фильмы</a></li>
+                    <li class="header-link"><a asp-controller="Home" asp-action="About">О нас</a></li>
+                    <li>
+                        <a href="/">Админка</a>
+                        <form method="post" asp-controller="Authorization" asp-action="Log_in">
+                            <input type="text" name="Name">
+                            <input type="password" name="Password">
+                            <input type="submit" value="Войти">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy;2023 - Films <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿<div class="container">
+    <h1>Фильмы</h1>
+    <table>
+        <tr>
+            <th class="hidden">Код</th>
+            <th>Название</th>
+            <th>Год</th>
+            <th>Категория</th>
+            <th>Режиссёр</th>
+            <th>Описание</th>
+        </tr>
+        @foreach (var film in ViewBag.Films)
+        {
+            <tr>
+                <td class="hidden">@film.Id</td>
+                <td><a asp-controller="Home" asp-action="Film" asp-route-id=@film.Id>@film.Name</a></td>
+                <td>@film.Year</td>
+                <td>@film.Category</td>
+                <td>@film.Director</td>
+                <td>@film.Description</td>
+            </tr>
+        }
+        @if (ViewBag.Role == "admin")
+        {
+            <tr>
+                <form method="post" asp-controller="Editor" asp-action="Create_film">
+                <td class="hidden"></td>
+                <td><input type="text" name="Name"></td>
+                <td><input type="number" name="Year"></td>
+                <td><input type="text" name="Category"></td>
+                <td><input type="text" name="Director"></td>
+                <td><input type="text" name="Description"></td>
+                <td><input type="submit" value="Добавить"></td>
+                </form>
+            </tr>
+        }
+    </table>
+</div>

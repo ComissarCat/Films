@@ -1,0 +1,45 @@
+﻿<div class="container">
+    <h1>@ViewBag.Film.Name</h1>
+    @{
+        string path_to_image = ViewBag.Film.Id + ".jpg";
+    }
+    <img src="~/images/@path_to_image"></img>
+    <table>
+        <tr>
+            <th class="hidden">Код</th>
+            <th>Название</th>
+            <th>Год</th>
+            <th>Категория</th>
+            <th>Режиссёр</th>
+            <th>Описание</th>
+        </tr>
+        <tr>
+            <form method="post" asp-controller="Editor" asp-action="Update_film">
+            <td class="hidden"><input type="text" name="Id" value="@ViewBag.Film.Id"></input></td>
+            <td><input type="text" name="Name" value="@ViewBag.Film.Name"></input></td>
+            <td><input type="number" name="Year" value="@ViewBag.Film.Year"></input></td>
+            <td><input type="text" name="Category" value="@ViewBag.Film.Category"></input></td>
+            <td><input type="text" name="Director" value="@ViewBag.Film.Director"></input></td>
+            <td><input type="text" name="Description" value="@ViewBag.Film.Description"></input></td>
+                @if (ViewBag.Role == "admin")
+                {
+                <td><input type="submit" value="Изменить"></td>
+                }
+            </form>
+            <form method="post" asp-controller="Editor" asp-action="Remove_film">
+            <td class="hidden"><input type="text" name="Id" value="@ViewBag.Film.Id"></input></td>
+                @if (ViewBag.Role == "admin")
+                {
+                <td><input type="submit" value="Удалить"></td>
+                }
+            </form>
+        </tr>
+    </table>
+    @if (ViewBag.Role == "admin")
+    {
+        <form method="post" asp-controller="Editor" asp-action="Add_image" enctype="multipart/form-data">
+            <input class="hidden" type="text" name="id" value="@ViewBag.Film.Id"></input>
+            <input type="file" name="image" /><input type="submit" value="Загрузить" />
+        </form>
+    }
+</div>
